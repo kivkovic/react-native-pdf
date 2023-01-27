@@ -90,7 +90,7 @@ export default class Pdf extends Component {
         },
         onLoadComplete: (numberOfPages, path) => {
         },
-        onPageChanged: (page, numberOfPages) => {
+        onPageChanged: (page, numberOfPages, width, height) => {
         },
         onError: (error) => {
         },
@@ -350,7 +350,7 @@ export default class Pdf extends Component {
                 page: pageNumber
             });
           }
-        
+
     }
 
     _onChange = (event) => {
@@ -368,7 +368,7 @@ export default class Pdf extends Component {
                 },
                 message[4]&&JSON.parse(message[4]));
             } else if (message[0] === 'pageChanged') {
-                this.props.onPageChanged && this.props.onPageChanged(Number(message[1]), Number(message[2]));
+                this.props.onPageChanged && this.props.onPageChanged(Number(message[1]), Number(message[2]), Number(message[3]), Number(message[4]));
             } else if (message[0] === 'error') {
                 this._onError(new Error(message[1]));
             } else if (message[0] === 'pageSingleTap') {

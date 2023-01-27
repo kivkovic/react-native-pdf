@@ -288,7 +288,7 @@ using namespace facebook::react;
                 //Release old doc
                 _pdfDocument = Nil;
             }
-            
+
             if ([_path hasPrefix:@"blob:"]) {
                 RCTBlobManager *blobManager = [
 #ifdef RCT_NEW_ARCH_ENABLED
@@ -303,7 +303,7 @@ using namespace facebook::react;
                     _pdfDocument = [[PDFDocument alloc] initWithData:blobData];
                 }
             } else {
-            
+
                 // decode file path
                 _path = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)_path, CFSTR(""));
                 NSURL *fileURL = [NSURL fileURLWithPath:_path];
@@ -623,7 +623,9 @@ using namespace facebook::react;
         unsigned long page = [_pdfDocument indexForPage:currentPage];
         unsigned long numberOfPages = _pdfDocument.pageCount;
 
-        [self notifyOnChangeWithMessage:[[NSString alloc] initWithString:[NSString stringWithFormat:@"pageChanged|%lu|%lu", page+1, numberOfPages]]];
+        CGSize pageSize = [_pdfView rowSizeForPage:currentPage];
+
+        [self notifyOnChangeWithMessage:[[NSString alloc] initWithString:[NSString stringWithFormat:@"pageChanged|%lu|%lu|%f|%f", page+1, numberOfPages, pageSize.width, pageSize.height]]];
     }
 
 }

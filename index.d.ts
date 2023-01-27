@@ -47,7 +47,7 @@ interface Props {
     singlePage?: boolean,
     onLoadProgress?: (percent: number,) => void,
     onLoadComplete?: (numberOfPages: number, path: string, size: {height: number, width: number}, tableContents?: TableContent[]) => void,
-    onPageChanged?: (page: number, numberOfPages: number) => void,
+    onPageChanged?: (page: number, numberOfPages: number, width: number, height: number) => void,
     onError?: (error: object) => void,
     onPageSingleTap?: (page: number, x: number, y: number) => void,
     onScaleChanged?: (scale: number) => void,
