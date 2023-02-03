@@ -151,6 +151,10 @@ using namespace facebook::react;
         _singlePage = newProps.singlePage;
         [updatedPropNames addObject:@"singlePage"];
     }
+    if (_fitEachPage != newProps.fitEachPage) {
+        _fitEachPage = newProps.fitEachPage;
+        [updatedPropNames addObject:@"fitEachPage"];
+    }
 
     [super updateProps:props oldProps:oldProps];
     [self didSetProps:updatedPropNames];
@@ -235,6 +239,7 @@ using namespace facebook::react;
     _fitPolicy = 2;
     _spacing = 10;
     _singlePage = NO;
+    _fitEachPage = NO;
 
     // init and config PDFView
     _pdfView = [[PDFView alloc] initWithFrame:CGRectMake(0, 0, 500, 500)];

@@ -27,5 +27,6 @@ public interface RNPDFPdfViewManagerInterface<T extends View> {
   void setSpacing(T view, int value);
   void setPassword(T view, @Nullable String value);
   void setSinglePage(T view, boolean value);
+  void setFitEachPage(T view, boolean value);
   void setNativePage(T view, int page);
 }

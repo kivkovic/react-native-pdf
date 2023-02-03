@@ -80,6 +80,7 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
     private boolean pageSnap = false;
     private FitPolicy fitPolicy = FitPolicy.WIDTH;
     private boolean singlePage = false;
+    private boolean fitEachPage = false;
 
     private static PdfView instance = null;
 
@@ -186,6 +187,16 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
         Constants.Pinch.MINIMUM_ZOOM = this.minScale;
         Constants.Pinch.MAXIMUM_ZOOM = this.maxScale;
 
+        // NOTE: offset seems to lack 2nd axis so it's pretty useless :(
+        //
+        //WritableMap event = Arguments.createMap();
+        //event.putString("message", "scroll|"+positionOffset+"|"+page);
+        //ReactContext reactContext = (ReactContext)this.getContext();
+        //reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
+        //    this.getId(),
+        //    "topChange",
+        //    event
+        //);
     }
 
     @Override
@@ -285,6 +296,7 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
                 .pageSnap(this.pageSnap)
                 .autoSpacing(this.autoSpacing)
                 .pageFling(this.pageFling)
+                .fitEachPage(this.fitEachPage)
                 .enableSwipe(!this.singlePage)
                 .enableDoubletap(!this.singlePage)
                 .enableAnnotationRendering(this.enableAnnotationRendering)
@@ -375,6 +387,10 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
 
     public void setSinglePage(boolean singlePage) {
         this.singlePage = singlePage;
+    }
+
+    public void setFitEachPage(boolean fitEachPage) {
+        this.fitEachPage = fitEachPage;
     }
 
     /**

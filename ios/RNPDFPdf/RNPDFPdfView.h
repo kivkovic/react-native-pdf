@@ -45,6 +45,7 @@ UIView
 @property(nonatomic) int spacing;
 @property(nonatomic, strong) NSString *password;
 @property(nonatomic) BOOL singlePage;
+@property(nonatomic) BOOL fitEachPage;
 
 @property(nonatomic, copy) RCTBubblingEventBlock onChange;
 

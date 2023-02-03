@@ -53,8 +53,10 @@ export default class Pdf extends Component {
         fitPolicy: PropTypes.number,
         trustAllCerts: PropTypes.bool,
         singlePage: PropTypes.bool,
+        fitEachPage: PropTypes.bool,
         onLoadComplete: PropTypes.func,
         onPageChanged: PropTypes.func,
+        onScroll: PropTypes.func,
         onError: PropTypes.func,
         onPageSingleTap: PropTypes.func,
         onScaleChanged: PropTypes.func,
@@ -91,6 +93,8 @@ export default class Pdf extends Component {
         onLoadComplete: (numberOfPages, path) => {
         },
         onPageChanged: (page, numberOfPages, width, height) => {
+        },
+        onScroll: (offset, page) => {
         },
         onError: (error) => {
         },
@@ -369,6 +373,8 @@ export default class Pdf extends Component {
                 message[4]&&JSON.parse(message[4]));
             } else if (message[0] === 'pageChanged') {
                 this.props.onPageChanged && this.props.onPageChanged(Number(message[1]), Number(message[2]), Number(message[3]), Number(message[4]));
+            } else if (message[0] === 'scroll') {
+                this.props.onScroll && this.props.onScroll(Number(message[1]), Number(message[2]));
             } else if (message[0] === 'error') {
                 this._onError(new Error(message[1]));
             } else if (message[0] === 'pageSingleTap') {

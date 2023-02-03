@@ -134,6 +134,11 @@ public class PdfManager extends SimpleViewManager<PdfView> implements RNPDFPdfVi
         pdfView.setSinglePage(singlePage);
     }
 
+    @ReactProp(name = "fitEachPage")
+    public void setFitEachPage(PdfView pdfView, boolean fitEachPage) {
+        pdfView.setFitEachPage(fitEachPage);
+    }
+
     // It seems funny, but this method is called through delegate on Paper, but on Fabric we need to
     // use `receiveCommand` method and call this one there
     @Override
